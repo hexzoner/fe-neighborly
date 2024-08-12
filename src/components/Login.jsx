@@ -11,6 +11,7 @@ export default function Login() {
   }
 
   function handleLogin() {
+    // console.log(loginData.email, loginData.password);
     login(loginData.email, loginData.password);
   }
 
