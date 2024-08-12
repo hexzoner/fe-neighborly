@@ -37,7 +37,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Protected />}>
         <Route path="myposts" element={<MyPosts />} />
       </Route>
-      <Route path="post/:id" element={<Details />} />
+      <Route path="posts/:id" element={<Details />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

@@ -6,9 +6,9 @@ import { getToken, storeToken } from "./storage.js";
 
 // import { dummyRoster } from "../../utils/temporaryPokemons";
 export const AuthProvider = ({ children }) => {
-  const loginUrl = "http://localhost:5050/auth/signin";
-  const signupUrl = "http://localhost:5050/auth/signup";
-  const authMeUrl = "http://localhost:5050/auth/me";
+  const loginUrl = "http://localhost:8080/auth/signin";
+  const signupUrl = "http://localhost:8080/auth/signup";
+  const authMeUrl = "http://localhost:8080/auth/me";
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
@@ -87,7 +87,8 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         signup,
-      }}>
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
