@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          //   console.log(res.data);
           setUserInfo(res.data);
         })
         .catch((err) => {

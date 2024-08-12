@@ -4,7 +4,7 @@ import { AuthContext } from "./AuthContext";
 
 export default function Navbar() {
   const { userInfo, logout } = useContext(AuthContext);
-  console.log("Navbar.jsx: userInfo: ", userInfo);
+  // console.log("Navbar.jsx: userInfo: ", userInfo);
   document.querySelector("html").setAttribute("data-theme", "light");
   return (
     <header className="bg-yellow-700 p-4 text-white">
