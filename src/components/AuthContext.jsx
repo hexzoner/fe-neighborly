@@ -68,8 +68,8 @@ export const AuthProvider = ({ children }) => {
       .then((res) => {
         console.log(res.data);
         // console.log("Cookies after signup:", document.cookie);
-        storeToken(res.data);
-        setUserInfo(res.data);
+        storeToken(res.data.token);
+        setUserInfo(res.data.user);
       })
       .catch((err) => {
         console.log(err);

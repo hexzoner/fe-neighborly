@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 
 export default function Login() {
   const { login, userInfo } = useContext(AuthContext);
-  const [loginData, setLoginData] = useState({ email: "john@doe.com", password: "12345678" });
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   function handleChange(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
