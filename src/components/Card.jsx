@@ -1,17 +1,28 @@
-const Card = ({ index, post }) => {
-    return (
-        <li className="card flex-initial min-w-[600px] border flex rounded-lg border-gray-300 p-4">
-            <div className="py-10">
-                <p className="name text-center">ID:{post.id}</p>
-                <p className="name text-center">ID:{post.id}</p>
+import { useNavigate } from "react-router-dom";
 
-            </div>
-            <div className="py-10 pl-10">
+
+
+const Card = ({ index, post }) => {
+    const navigate = useNavigate();
+
+    function handleDetailsClick(pokemonId) {
+        navigate("/Details/${pokemonId}");
+    }
+
+    return (
+        <li className="w-full m-4 flex flex-col items-center rounded-lg border-2 border-blue-400 p-4">
+            <div className="py-2 pl-10">
                 <h2>{post.title}</h2>
             </div>
-            <div className="py-10 pl-10">
-                <p>{post.body}</p>
+            <div className="py-2 pl-10">
+                <p>{post.content}</p>
             </div>
+            <button
+                onClick={() => handleDetailsClick(pokemon.id)}
+                className="mx-4 inline-flex items-center justify-center rounded-lg border-2 border-blue-400 p-2 font-bold"
+            >
+                More Details
+            </button>
         </li>
     );
 };
