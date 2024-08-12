@@ -8,6 +8,7 @@ import { getToken, storeToken } from "./storage.js";
 export const AuthProvider = ({ children }) => {
   const loginUrl = "http://localhost:5050/auth/signin";
   const signupUrl = "http://localhost:5050/auth/signup";
+  const authMeUrl = "http://localhost:5050/auth/me";
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
@@ -16,8 +17,9 @@ export const AuthProvider = ({ children }) => {
 
     if (token) {
       axios
-        .get("http://localhost:5050/auth/me", {
+        .get(authMeUrl, {
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         })
@@ -26,7 +28,8 @@ export const AuthProvider = ({ children }) => {
           setUserInfo(res.data);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
+          //   alert(err.message);
         });
     }
   }, []);
@@ -45,41 +48,34 @@ export const AuthProvider = ({ children }) => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log("Cookies after signup:", document.cookie);
-        // console.log(res.cookies);
-        // storeToken(res.data.token);
+        // console.log("Cookies after signup:", document.cookie);
+        console.log(res.data);
+        storeToken(res.data);
+        setUserInfo(userData);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err.response.data.error);
+        storeToken(null);
+        setUserInfo(null);
+      });
+  }
+
+  function login(login, password) {
+    // console.log({ login, password });
+    axios
+      .post(loginUrl, { email: login, password })
+      .then((res) => {
+        console.log(res.data);
+        // console.log("Cookies after signup:", document.cookie);
+        storeToken(res.data);
         setUserInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
-      });
-  }
-
-  function login(email, password) {
-    // console.log("AuthContext - login");
-    console.log({ email, password });
-    // storeToken("eyJ");
-    // setUserInfo({ email, password });
-
-    axios
-      .post(
-        loginUrl,
-        {
-          email,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        console.log("Cookies after signup:", document.cookie);
-        // storeToken(res.data.token);
-        // setUserInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
+        alert(err.response.data.error);
+        storeToken(null);
+        setUserInfo(null);
       });
   }
 
