@@ -7,26 +7,44 @@ export default function Navbar() {
   // console.log("Navbar.jsx: userInfo: ", userInfo);
   document.querySelector("html").setAttribute("data-theme", "light");
   return (
-    <header className="bg-base-100 text-base border-b-[1.5px] border-primary border-opacity-60">
-      <div className="py-4 max-w-[60rem] m-auto">
-        <div className="flex justify-between items-center font-semibold text-2xl flex-wrap gap-3">
-          <NavLink to="/" href="index.html" className={({ isActive }) => (isActive ? "underline " : "")}>
-            Home
+    <header className="bg-yellow-700 p-4 text-white">
+      <div className="container mx-auto flex items-center justify-between">
+        <div className="flex items-center">
+          <NavLink to="/" href="index.html" className="btn btn-ghost text-xl text-white">
+            Neighborly
           </NavLink>
-          {userInfo && (
-            <NavLink to="myposts" className={({ isActive }) => (isActive ? "underline " : "")}>
-              My Posts
-            </NavLink>
-          )}
-          <div className="flex gap-6">
+        </div>
+        <nav>
+          <ul className="flex space-x-4 font-semibold">
+            <li>
+              <NavLink to="/" href="index.html" className={({ isActive }) => (isActive ? "text-slate-200 text-2xl hover:underline hover:underline-offset-4" : "text-white text-2xl hover:underline hover:underline-offset-4")}>
+                Home
+              </NavLink>
+            </li>
+            {userInfo && (
+              <li>
+
+                <NavLink to="myposts" className={({ isActive }) => (isActive ? "underline " : "")}>
+                  My Posts
+                </NavLink>
+              </li>
+            )}
+
             {!userInfo && (
               <>
-                <NavLink to="login" className={({ isActive }) => (isActive ? "underline " : "")}>
-                  Login
-                </NavLink>
-                <NavLink to="signup" className={({ isActive }) => (isActive ? "underline " : "")}>
-                  Sign Up
-                </NavLink>
+                <li>
+                  <NavLink to="login" className={({ isActive }) => (isActive ? "text-slate-200 text-2xl hover:underline hover:underline-offset-4" :
+                    "text-white text-2xl hover:underline hover:underline-offset-4")}>
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+
+                  <NavLink to="signup" className={({ isActive }) => (isActive ? "text-slate-200 text-2xl hover:underline hover:underline-offset-4" :
+                    "text-white text-2xl hover:underline hover:underline-offset-4")}>
+                    Sign Up
+                  </NavLink>
+                </li>
               </>
             )}
             {userInfo && (
@@ -34,9 +52,9 @@ export default function Navbar() {
                 Logout
               </button>
             )}
-          </div>
-        </div>
+          </ul>
+        </nav>
       </div>
-    </header>
+    </header >
   );
 }
