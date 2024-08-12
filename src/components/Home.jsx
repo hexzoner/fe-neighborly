@@ -15,7 +15,7 @@ const Home = () => {
   async function fetchAllPosts(limit = 100) {
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts?limit=${limit}`,
+        `http://localhost:8080/posts`,
       );
       const data = await response.json();
       setPosts(data);
@@ -43,13 +43,17 @@ const Home = () => {
 
   return (
     <div>
-      <input
-        id="search"
-        type="text"
-        placeholder="Search"
-        onChange={filterPosts}
-        className="rounded-lg border-2 p-2"
-      />
+      <div className="my-4 w-full p-4">
+        <input
+          id="search"
+          type="text"
+          placeholder="Search"
+          onChange={filterPosts}
+          className="rounded-lg border-2 p-2 w-full"
+        />
+
+      </div>
+
       <ul id="postList" className="flex flex-wrap justify-center">
         {posts.map((post, index) => (
           <Card key={index} post={post} />
